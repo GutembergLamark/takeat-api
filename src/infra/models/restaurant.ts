@@ -80,9 +80,9 @@ Product.belongsTo(Restaurant, {
 
 Restaurant.hasMany(Order, {
   foreignKey: "restaurant_id",
-  as: "restaurant_orders",
+  as: "orders",
 });
 Order.belongsTo(Restaurant, {
   foreignKey: "restaurant_id",
-  as: "restaurant_orders",
+  as: "orders",
 });

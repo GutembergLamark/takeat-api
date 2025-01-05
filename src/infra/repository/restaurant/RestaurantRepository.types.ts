@@ -14,4 +14,5 @@ export interface IRestaurantRepository {
   findById(id: string): Promise<any>;
   findByEmail(email: string): Promise<any>;
   findProductsById(id: string): Promise<any>;
+  findOrdersById(id: string): Promise<any>;
 }

@@ -14,15 +14,8 @@ export default class CreateRestaurantController
 
   async execute(request: Request, response: Response): Promise<Response> {
     try {
-      const {
-        username,
-        phone,
-        email,
-        password,
-        address,
-        has_service_tax,
-        canceled_at,
-      } = request.validatedBody as Restaurant;
+      const { username, phone, email, password, address, has_service_tax } =
+        request.validatedBody as Restaurant;
 
       const restaurant = new Restaurant(
         username,
@@ -31,7 +24,6 @@ export default class CreateRestaurantController
         password,
         address,
         has_service_tax,
-        canceled_at,
       );
 
       const data = await this.createRestaurantService.execute(restaurant);

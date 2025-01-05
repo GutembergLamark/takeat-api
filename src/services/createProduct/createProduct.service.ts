@@ -15,8 +15,6 @@ export default class CreateProductService {
       restaurantId,
     );
 
-    console.log("Already Exists", alreadyExists);
-
     if (alreadyExists) {
       throw new AppError("Product already exists", 400);
     }

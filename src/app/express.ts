@@ -1,5 +1,5 @@
 import "dotenv/config";
-import express from "express";
+import express, { Request, Response } from "express";
 import "express-async-errors";
 import appRoutes from "../routes";
 
@@ -12,5 +12,11 @@ app.use(cors());
 app.use(express.json());
 
 appRoutes(app);
+
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).json({
+    message: "Hello World",
+  });
+});
 
 export default app;

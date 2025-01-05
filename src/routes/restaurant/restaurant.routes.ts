@@ -4,6 +4,9 @@ import { schemaComposer } from "../../composers/middlewares/schema.composer";
 import { createProductSchema } from "../../shared/schemas/product.schema";
 import { createProductComposer } from "../../composers/usecases/createProduct.composer";
 import { returnProductsComposer } from "../../composers/usecases/returnProducts.composer";
+import { createOrderSchema } from "../../shared/schemas/order.schema";
+import { createOrderComposer } from "../../composers/usecases/createOrder.composer";
+import { returnOrdersComposer } from "../../composers/usecases/returnOrders.composer";
 
 const routes = Router();
 
@@ -28,6 +31,29 @@ export const restaurantRoutes = function () {
     },
     function (request, response) {
       returnProductsComposer(request, response);
+    },
+  );
+
+  routes.post(
+    "/orders",
+    function (request, response, next) {
+      authComposer(request, response, next);
+    },
+    function (request, response, next) {
+      schemaComposer(request, response, next, createOrderSchema);
+    },
+    function (request, response) {
+      createOrderComposer(request, response);
+    },
+  );
+
+  routes.get(
+    "/orders",
+    function (request, response, next) {
+      authComposer(request, response, next);
+    },
+    function (request, response) {
+      returnOrdersComposer(request, response);
     },
   );
 
