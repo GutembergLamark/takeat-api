@@ -1,5 +1,5 @@
-import { clearDatabase } from "../models";
 import orquestrator from "./orquestrator";
+import { clearDatabase } from "../models";
 
 beforeAll(async () => {
   await orquestrator.waitForAllServices();
