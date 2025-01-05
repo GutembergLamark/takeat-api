@@ -32,7 +32,11 @@ export default class ProductRepository implements IProductRepository {
     return findProduct !== null;
   }
 
-  findByName(name: string): Promise<any> {
-    throw new Error("Method not implemented.");
+  async findById(id: string, restaurantId: string): Promise<any> {
+    const findProduct = await this.productModel.findOne({
+      where: { id, restaurant_id: restaurantId },
+    });
+
+    return findProduct;
   }
 }

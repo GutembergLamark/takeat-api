@@ -5,7 +5,6 @@ export default class Product {
     public readonly name: string,
     public readonly description: string,
     public readonly value: number,
-    public readonly canceled_at?: string | undefined,
   ) {}
 
   toJSON(): ProductJSON {
@@ -13,7 +12,6 @@ export default class Product {
       name: this.name,
       description: this.description,
       value: this.value,
-      canceled_at: this.canceled_at ?? null,
     };
   }
 }

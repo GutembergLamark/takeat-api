@@ -1,7 +1,7 @@
 import "dotenv/config";
 import app from "./express";
 import { databaseConnection } from "../infra/database/DatabaseConnection";
-import syncDatabase from "../infra/models";
+import { syncDatabase } from "../infra/models";
 
 const PORT = process.env.NODE_PORT;
 const isDev = process.env.NODE_ENV === "development";

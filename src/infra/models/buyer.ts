@@ -33,9 +33,9 @@ Buyer.init(
 
 Buyer.hasMany(Order, {
   foreignKey: "buyer_id",
-  as: "orders",
+  as: "buyer_orders",
 });
 Order.belongsTo(Buyer, {
   foreignKey: "buyer_id",
-  as: "orders",
+  as: "buyer_orders",
 });

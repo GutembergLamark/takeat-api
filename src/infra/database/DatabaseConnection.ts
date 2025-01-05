@@ -46,6 +46,13 @@ export default class DatabaseConnection implements IDatabaseConnection {
   async close() {
     if (this.connection) await this.connection.close();
   }
+
+  async clearDatabase() {
+    if (this.connection)
+      await this.connection.query(
+        "drop schema public cascade; create schema public;",
+      );
+  }
 }
 
 export const databaseConnection = new DatabaseConnection();

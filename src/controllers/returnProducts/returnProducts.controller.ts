@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { AppError } from "../../shared/errors/AppError";
 import IReturnProductsService from "../../services/returnProducts/returnProducts.service.types";
 import IReturnProductsController from "./returnProducts.controller.types";
 import { catchError } from "../../shared/helpers/catchError";
