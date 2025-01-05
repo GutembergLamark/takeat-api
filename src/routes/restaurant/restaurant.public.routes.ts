@@ -1,12 +1,7 @@
 import { Router } from "express";
-import createRestaurantController from "../../controllers/restaurant/createRestaurant.controller";
-import RestaurantRepository from "../../infra/repository/restaurant/RestaurantRepository";
-import CreateRestaurantService from "../../services/createUSer/createRestaurant.service";
-import { databaseConnection } from "../../app";
-import { createRestaurantComposer } from "../../composers/createRestaurant.composer";
-import ValidateRequest from "../../middlewares/ValidateRequest.middleware";
-import { createRestaurantSchema } from "../../controllers/schemas/restaurant.schema";
-import { schemaComposer } from "../../composers/schema.composer";
+import { createRestaurantComposer } from "../../composers/usecases/createRestaurant.composer";
+import { createRestaurantSchema } from "../../shared/schemas/restaurant.schema";
+import { schemaComposer } from "../../composers/middlewares/schema.composer";
 
 const routes = Router();
 
@@ -18,7 +13,7 @@ export const restaurantPublicRoutes = function () {
     },
     function (request, response) {
       createRestaurantComposer(request, response);
-    }
+    },
   );
 
   return routes;

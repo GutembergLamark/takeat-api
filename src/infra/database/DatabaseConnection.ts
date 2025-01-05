@@ -24,6 +24,19 @@ export default class DatabaseConnection implements IDatabaseConnection {
 
   getConnection() {
     if (this.connection) return this.connection;
+
+    if (!this.connection) {
+      this.connection = new Sequelize(this.DATABASE_URL, {
+        dialect: "postgres",
+        host: process.env.POSTGRES_HOST,
+        port: Number(process.env.POSTGRES_PORT),
+        database: process.env.POSTGRES_DB,
+        password: process.env.POSTGRES_PASSWORD,
+        username: process.env.POSTGRES_USER,
+      });
+
+      return this.connection;
+    }
   }
 
   async isConnected() {
@@ -34,3 +47,6 @@ export default class DatabaseConnection implements IDatabaseConnection {
     if (this.connection) await this.connection.close();
   }
 }
+
+export const databaseConnection = new DatabaseConnection();
+export const sequelize = databaseConnection.getConnection();

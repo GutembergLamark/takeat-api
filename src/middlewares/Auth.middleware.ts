@@ -13,7 +13,7 @@ export class AuthService {
   constructor(
     readonly req: Request,
     readonly res: Response,
-    readonly next: NextFunction
+    readonly next: NextFunction,
   ) {
     this.authorization = req?.headers?.authorization || "";
   }
@@ -45,7 +45,7 @@ export class AuthService {
         }
 
         return this.next();
-      }
+      },
     );
   }
 }

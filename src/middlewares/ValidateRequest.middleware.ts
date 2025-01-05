@@ -19,7 +19,11 @@ export default class ValidateRequest {
         return next();
       } catch (e: any) {
         return res.status(400).json({
-          error: e.errors?.join(", "),
+          error: e.inner.map((err: any) => {
+            return {
+              [err.path]: err.message,
+            };
+          }),
         });
       }
     } catch (e) {

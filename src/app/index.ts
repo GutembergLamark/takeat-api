@@ -1,23 +1,24 @@
 import "dotenv/config";
 import app from "./express";
-import DatabaseConnection from "../infra/database/DatabaseConnection";
+import { databaseConnection } from "../infra/database/DatabaseConnection";
+import syncDatabase from "../infra/models";
 
 const PORT = process.env.NODE_PORT;
-
-export const databaseConnection = new DatabaseConnection();
+const isDev = process.env.NODE_ENV === "development";
 
 (async () => {
   try {
     await databaseConnection.isConnected();
 
-    /* sequelize.sync({ force: true }).then(() => {
-      app.listen(PORT, () => {
-        console.log(`Server running in port ${PORT}`);
+    await syncDatabase({ alter: isDev })
+      .then(() => {
+        app.listen(PORT, () => {
+          console.log(`Server running in port ${PORT}`);
+        });
+      })
+      .catch((error: string) => {
+        console.error("Unable to connect to the database:", error);
       });
-    }); */
-    app.listen(PORT, () => {
-      console.log(`Server running in port ${PORT}`);
-    });
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
