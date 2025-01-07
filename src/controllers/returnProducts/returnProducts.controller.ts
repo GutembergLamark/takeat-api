@@ -9,7 +9,7 @@ export default class ReturnProductsController
   constructor(private readonly returnProductsService: IReturnProductsService) {}
 
   async execute(request: Request, response: Response): Promise<Response> {
-    const { id } = request.restaurant;
+    const { id } = request?.params;
 
     try {
       const products = await this.returnProductsService.execute(id);

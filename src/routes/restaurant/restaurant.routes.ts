@@ -24,15 +24,9 @@ export const restaurantRoutes = function () {
     },
   );
 
-  routes.get(
-    "/products",
-    function (request, response, next) {
-      authComposer(request, response, next);
-    },
-    function (request, response) {
-      returnProductsComposer(request, response);
-    },
-  );
+  routes.get("/products/:id", function (request, response) {
+    returnProductsComposer(request, response);
+  });
 
   routes.post(
     "/orders",
