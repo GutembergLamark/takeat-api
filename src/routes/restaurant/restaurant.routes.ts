@@ -31,9 +31,6 @@ export const restaurantRoutes = function () {
   routes.post(
     "/orders",
     function (request, response, next) {
-      authComposer(request, response, next);
-    },
-    function (request, response, next) {
       schemaComposer(request, response, next, createOrderSchema);
     },
     function (request, response) {
