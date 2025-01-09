@@ -101,7 +101,20 @@ export default class RestaurantRepository implements IRestaurantRepository {
   }
 
   async findAllRestaurants() {
-    const findRestaurants = await this.restaurantModel.findAll();
+    const findRestaurants = await this.restaurantModel.findAll({
+      attributes: [
+        "id",
+        "username",
+        "email",
+        "password",
+        "phone",
+        "address",
+        "has_service_tax",
+        "canceled_at",
+        [col("createdAt"), "created_at"],
+        [col("updatedAt"), "updated_at"],
+      ],
+    });
 
     return findRestaurants;
   }
