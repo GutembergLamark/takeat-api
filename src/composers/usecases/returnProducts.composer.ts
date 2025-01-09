@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import RestaurantRepository from "../../infra/repository/restaurant/RestaurantRepository";
 import { databaseConnection } from "../../infra/database/DatabaseConnection";
-import CreateSessionController from "../../controllers/createSession/createSession.controller";
 import ReturnProductsService from "../../services/returnProducts/returnProducts.service";
 import ReturnProductsController from "../../controllers/returnProducts/returnProducts.controller";
 

@@ -17,7 +17,10 @@ export default class CreateSessionController
       const { authorization, restaurant } =
         await this.createSessionService.execute(email, password);
 
-      return response.status(200).json({ ...restaurant, authorization });
+      return response.status(200).json({
+        message: "Login feito com sucesso",
+        restaurant: { ...restaurant, authorization },
+      });
     } catch (error) {
       return catchError(error, response);
     }

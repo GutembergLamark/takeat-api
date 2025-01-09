@@ -99,4 +99,10 @@ export default class RestaurantRepository implements IRestaurantRepository {
 
     return findRestaurantWithProducts;
   }
+
+  async findAllRestaurants() {
+    const findRestaurants = await this.restaurantModel.findAll();
+
+    return findRestaurants;
+  }
 }
