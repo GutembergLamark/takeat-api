@@ -1,15 +1,15 @@
 import request from "supertest";
-import app from "../../app/express";
-import { mockedRestaurant } from "../mocks";
+import app from "../../../app/express";
+import { mockedRestaurant } from "../../mocks";
 
-describe("GET - /restaurant/:id", function () {
+describe("GET - /restaurant/data/:id", function () {
   test("Deve retornar um restaurante passando o id como parâmetro", async function () {
     const restaurantCreated = await request(app)
       .post("/public/restaurants")
       .send(mockedRestaurant);
 
     const data = await request(app).get(
-      `/restaurant/${restaurantCreated?.body?.data?.id}`,
+      `/restaurant/data/${restaurantCreated?.body?.data?.id}`,
     );
 
     expect(data?.body?.restaurant).toHaveProperty("id");
@@ -42,7 +42,7 @@ describe("GET - /restaurant/:id", function () {
 
   test("Deve retornar um erro se um id incorreto for passado", async function () {
     const data = await request(app).get(
-      `/restaurant/b42f67b7-0dc3-4748-b924-cd62978ab8b1`,
+      `/restaurant/data/b42f67b7-0dc3-4748-b924-cd62978ab8b1`,
     );
 
     expect(data?.body).toHaveProperty("message");

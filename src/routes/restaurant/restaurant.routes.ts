@@ -29,7 +29,7 @@ export const restaurantRoutes = function () {
     returnProductsComposer(request, response);
   });
 
-  routes.get("/:id", function (request, response) {
+  routes.get("/data/:id", function (request, response) {
     restaurantByIdComposer(request, response);
   });
 

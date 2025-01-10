@@ -19,7 +19,7 @@ export default class DatabaseConnection implements IDatabaseConnection {
       database: process.env.POSTGRES_DB,
       password: process.env.POSTGRES_PASSWORD,
       username: process.env.POSTGRES_USER,
-      /* logging: false, */
+      logging: false,
     });
   }
 
@@ -34,7 +34,7 @@ export default class DatabaseConnection implements IDatabaseConnection {
         database: process.env.POSTGRES_DB,
         password: process.env.POSTGRES_PASSWORD,
         username: process.env.POSTGRES_USER,
-        /* logging: false, */
+        logging: false,
       });
 
       return this.connection;

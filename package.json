@@ -9,7 +9,7 @@
     "services:down": "docker compose -f src/infra/docker/compose.yaml down",
     "test": "npm run services:up && concurrently -n node,jest --hide node -k -s command-jest \"ts-node-dev src/app/index.ts\" \"jest --runInBand --verbose --detectOpenHandles\"",
     "posttest": "npm run services:stop",
-    "test:watch": "jest --watchAll --runInBand --verbose",
+    "test:watch": "jest --watchAll --runInBand --verbose --detectOpenHandles",
     "lint:prettier:check": "prettier . --check",
     "lint:prettier:fix": "prettier . --write"
   },
