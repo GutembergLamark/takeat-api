@@ -87,19 +87,6 @@ export default class RestaurantRepository implements IRestaurantRepository {
     return findRestaurantWithProducts;
   }
 
-  async findOrdersById(id: string) {
-    const findRestaurantWithProducts = await this.restaurantModel.findOne({
-      where: { id },
-      attributes: ["id"],
-      include: {
-        model: this.dbConnection.models.Order,
-        as: "orders",
-      },
-    });
-
-    return findRestaurantWithProducts;
-  }
-
   async findAllRestaurants() {
     const findRestaurants = await this.restaurantModel.findAll({
       attributes: [

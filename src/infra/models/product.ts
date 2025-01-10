@@ -43,9 +43,9 @@ Product.init(
 
 Product.hasOne(Order, {
   foreignKey: "product_id",
-  as: "order",
+  as: "product",
 });
 Order.belongsTo(Product, {
   foreignKey: "product_id",
-  as: "order",
+  as: "product",
 });

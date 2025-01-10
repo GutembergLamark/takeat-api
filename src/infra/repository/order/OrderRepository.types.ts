@@ -6,4 +6,5 @@ export interface IOrderRepository {
     buyerId: string,
   ): Promise<any>;
   existingInRepository(field: string): Promise<void>;
+  findOrdersById(id: string): Promise<any>;
 }
