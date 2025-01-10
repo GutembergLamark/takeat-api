@@ -18,7 +18,7 @@ async function waitForAllServices() {
 
     async function fetchStatusPage() {
       try {
-        const response = await request(app).get('/');
+        const response = await request(app).get("/");
         if (response.status !== 200) {
           throw new Error(
             `Server is not ready. Response status: ${response.status}`,

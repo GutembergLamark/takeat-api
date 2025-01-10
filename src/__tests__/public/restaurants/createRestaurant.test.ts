@@ -35,7 +35,7 @@ describe("POST - /public/restaurants", function () {
     expect(response?.body?.data).toHaveProperty("canceled_at");
     expect(response?.body?.data).toHaveProperty("created_at");
     expect(response?.body?.data).toHaveProperty("updated_at");
-    
+
     expect(response?.body?.data).not.toHaveProperty("password");
 
     expect(response.status).toBe(201);
