@@ -1,4 +1,5 @@
 import { IRestaurantRepository } from "../../infra/repository/restaurant/RestaurantRepository.types";
+import { AppError } from "../../shared/errors/AppError";
 import { IReturnOrdersService } from "./returnOrders.service.types";
 
 export default class ReturnOrdersService implements IReturnOrdersService {
@@ -8,7 +9,11 @@ export default class ReturnOrdersService implements IReturnOrdersService {
     const restaurant =
       await this.restaurantRepository.findOrdersById(restaurantId);
 
-    const products = restaurant?.orders;
+    if (!restaurant) {
+      throw new AppError("Restaurant not found", 400);
+    }
+
+    const products = restaurant?.orders ?? [];
 
     return products;
   }

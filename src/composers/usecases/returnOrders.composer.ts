@@ -13,5 +13,5 @@ export async function returnOrdersComposer(
   const returnOrdersController = new ReturnOrdersController(
     returnOrdersService,
   );
-  returnOrdersController.execute(request, response);
+  return returnOrdersController.execute(request, response);
 }

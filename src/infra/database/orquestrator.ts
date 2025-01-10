@@ -1,5 +1,7 @@
 import retry from "async-retry";
 import "dotenv/config";
+import request from "supertest";
+import app from "../../app/express";
 
 async function waitForAllServices() {
   await waitForWebServer();
@@ -16,9 +18,7 @@ async function waitForAllServices() {
 
     async function fetchStatusPage() {
       try {
-        const response = await fetch(
-          `http://localhost:${process.env.NODE_PORT}/`,
-        );
+        const response = await request(app).get('/');
         if (response.status !== 200) {
           throw new Error(
             `Server is not ready. Response status: ${response.status}`,

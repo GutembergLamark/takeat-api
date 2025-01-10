@@ -7,6 +7,7 @@ import { returnProductsComposer } from "../../composers/usecases/returnProducts.
 import { createOrderSchema } from "../../shared/schemas/order.schema";
 import { createOrderComposer } from "../../composers/usecases/createOrder.composer";
 import { returnOrdersComposer } from "../../composers/usecases/returnOrders.composer";
+import { restaurantByIdComposer } from "../../composers/usecases/restaurantById.composer";
 
 const routes = Router();
 
@@ -24,21 +25,16 @@ export const restaurantRoutes = function () {
     },
   );
 
-  routes.get(
-    "/products",
-    function (request, response, next) {
-      authComposer(request, response, next);
-    },
-    function (request, response) {
-      returnProductsComposer(request, response);
-    },
-  );
+  routes.get("/products/:id", function (request, response) {
+    returnProductsComposer(request, response);
+  });
+
+  routes.get("/data/:id", function (request, response) {
+    restaurantByIdComposer(request, response);
+  });
 
   routes.post(
     "/orders",
-    function (request, response, next) {
-      authComposer(request, response, next);
-    },
     function (request, response, next) {
       schemaComposer(request, response, next, createOrderSchema);
     },

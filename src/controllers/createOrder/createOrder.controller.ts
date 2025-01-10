@@ -9,21 +9,18 @@ export default class CreateOrderController implements ICreateOrderController {
   constructor(private readonly createOrderService: ICreateOrderService) {}
 
   async execute(request: Request, response: Response) {
-    const { amount, product, phone, name } = request.validatedBody as IOrder;
-
-    const { id: restaurantId } = request.restaurant;
+    const { amount, product, phone, name, restaurant_id } =
+      request.validatedBody as IOrder & { restaurant_id: string };
 
     const order = new Order(amount, product, phone, name);
 
     try {
-      const data = await this.createOrderService.execute(order, restaurantId);
+      const data = await this.createOrderService.execute(order, restaurant_id);
 
       return response
         .status(201)
         .json({ message: "Order created successfully", data });
     } catch (error) {
-      console.log(error);
-
       return catchError(error, response);
     }
   }

@@ -11,4 +11,5 @@ export const createOrderSchema: Schema<IOrder> = yup.object().shape({
     .number()
     .required("A Quantidade é obrigatória")
     .transform((value) => parseFloat(value)),
+  restaurant_id: yup.string().required("O id do restaurante é obrigatório"),
 });
