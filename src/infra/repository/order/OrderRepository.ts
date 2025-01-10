@@ -30,4 +30,22 @@ export default class OrderRepository implements IOrderRepository {
   async existingInRepository(field: string) {
     throw new Error("Method not implemented.");
   }
+
+  async findOrdersById(id: string) {
+    const findOrders = await this.orderModel.findAll({
+      where: { restaurant_id: id },
+      include: [
+        {
+          model: this.dbConnection.models.Buyer,
+          as: "buyer",
+        },
+        {
+          model: this.dbConnection.models.Product,
+          as: "product",
+        },
+      ],
+    });
+
+    return findOrders;
+  }
 }

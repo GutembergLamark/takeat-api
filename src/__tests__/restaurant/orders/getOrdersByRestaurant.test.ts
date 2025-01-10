@@ -48,6 +48,9 @@ describe("GET - /restaurant/orders", function () {
     expect(data?.body).toHaveProperty("orders");
     expect(data?.body?.orders?.length).toBe(1);
 
+    expect(data?.body?.orders[0]).toHaveProperty("buyer");
+    expect(data?.body?.orders[0]).toHaveProperty("product");
+
     expect(data?.status).toBe(200);
   });
 

@@ -1,20 +1,12 @@
-import { IRestaurantRepository } from "../../infra/repository/restaurant/RestaurantRepository.types";
-import { AppError } from "../../shared/errors/AppError";
+import { IOrderRepository } from "../../infra/repository/order/OrderRepository.types";
 import { IReturnOrdersService } from "./returnOrders.service.types";
 
 export default class ReturnOrdersService implements IReturnOrdersService {
-  constructor(private readonly restaurantRepository: IRestaurantRepository) {}
+  constructor(private readonly orderRepository: IOrderRepository) {}
 
   async execute(restaurantId: string) {
-    const restaurant =
-      await this.restaurantRepository.findOrdersById(restaurantId);
+    const orders = await this.orderRepository.findOrdersById(restaurantId);
 
-    if (!restaurant) {
-      throw new AppError("Restaurant not found", 400);
-    }
-
-    const products = restaurant?.orders ?? [];
-
-    return products;
+    return orders;
   }
 }
