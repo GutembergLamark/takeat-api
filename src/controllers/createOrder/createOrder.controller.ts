@@ -21,8 +21,6 @@ export default class CreateOrderController implements ICreateOrderController {
         .status(201)
         .json({ message: "Order created successfully", data });
     } catch (error) {
-      console.log(error);
-
       return catchError(error, response);
     }
   }

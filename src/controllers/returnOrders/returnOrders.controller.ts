@@ -10,7 +10,7 @@ export default class ReturnOrdersController implements IReturnOrdersController {
     const { id } = request.restaurant;
 
     try {
-      const orders = await this.returnOrdersService.execute(id);
+      const orders = await this.returnOrdersService.execute(id ?? "");
 
       return response.status(200).json({ orders });
     } catch (error) {

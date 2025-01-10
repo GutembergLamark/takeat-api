@@ -22,6 +22,10 @@ export default class CreateOrderService implements ICreateOrderService {
     let servicePrice;
     let totalPrice;
 
+    if (order?.amount < 1) {
+      throw new AppError("Quantity must be greater than or equal to 1", 400);
+    }
+
     const buyer = await this.buyerRepository.findByPhone(order.phone);
 
     if (buyer) {
@@ -42,13 +46,17 @@ export default class CreateOrderService implements ICreateOrderService {
     );
 
     if (!product) {
-      throw new AppError("This product not found", 404);
+      throw new AppError("This product not found", 400);
     }
 
     productId = product?.id;
     totalPrice = order?.amount * product?.value;
 
     const restaurant = await this.restaurantRepository.findById(restaurantId);
+
+    if (!restaurant) {
+      throw new AppError("This restaurant not found", 400);
+    }
 
     if (restaurant?.has_service_tax) {
       servicePrice = totalPrice + totalPrice * 0.1;

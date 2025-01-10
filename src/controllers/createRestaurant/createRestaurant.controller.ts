@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import Restaurant from "../../domain/restaurant/Restaurant";
 import { ICreateRestaurantService } from "../../services/createRestaurant/createRestaurant.types";
 import { IcreateRestaurantController } from "./createRestaurant.controller.types";
-import { AppError } from "../../shared/errors/AppError";
 import { catchError } from "../../shared/helpers/catchError";
 
 export default class CreateRestaurantController
